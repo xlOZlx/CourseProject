@@ -1,0 +1,16 @@
+﻿<Page x:Class="FantasyLibrary.AuthorPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FantasyLibrary"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="530" d:DesignWidth="880"
+      Title="AuthorPage">
+
+    <Grid Background="LightGray">
+        <TextBlock Text="Авторы" Height="35" FontSize="26" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+        <ListBox x:Name="AuthorList" Margin="15,35,15,15"/>
+    </Grid>
+</Page>

@@ -6,6 +6,10 @@
         xmlns:local="clr-namespace:FantasyLibrary"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d" Height="600" Width="1080" Foreground="White" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
+    <WindowChrome.WindowChrome>
+        <WindowChrome GlassFrameThickness="0"
+                      CornerRadius="5"/>
+    </WindowChrome.WindowChrome>
     <Window.Resources>
         <Storyboard x:Key="MenuOpen">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
@@ -31,10 +35,10 @@
     </Window.Triggers>
     
     <Grid Background="LightGray">
-        <Grid Height="60" VerticalAlignment="Top" Background="#FF1368BD">
+        <Grid Height="60" VerticalAlignment="Top" Background="#FFBD00BD">
             <TextBlock Text="Fantasy Library" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24"/>
             <StackPanel VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Right">
-                <TextBlock Text="Account_Name" VerticalAlignment="Center" FontSize="18"/>
+                <TextBlock x:Name="UserName" Text="Account_Name" VerticalAlignment="Center" FontSize="18"/>
                 <materialDesign:PopupBox Margin="10" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
                     <StackPanel Width="150">
                         <Button Content="Настройки"/>
@@ -46,7 +50,7 @@
                 </materialDesign:PopupBox>
             </StackPanel>
         </Grid>
-        <Grid x:Name="GridMenu" Width="60" HorizontalAlignment="Left" Background="#FF1B3861">
+        <Grid x:Name="GridMenu" Width="60" HorizontalAlignment="Left" Background="#FF2E002E">
             <StackPanel>
                 <Grid Height="150" Background="White">
                     <Button x:Name="ButtonCloseMenu" Width="60" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Visibility="Collapsed" Click="ButtonCloseMenu_Click">
@@ -56,40 +60,34 @@
                         <materialDesign:PackIcon Foreground="#FF1B3861" Kind="Menu" Width="25" Height="25"/>
                     </Button>
                 </Grid>
-                <ListView x:Name="LV_Menu" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Foreground="#FF1368BD">
-                    <ListViewItem Height="60">
+                <ListView x:Name="LV_Menu" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Foreground="#FFBD00BD">
+                    <ListViewItem Height="60" PreviewMouseLeftButtonDown="Catalog_Selected">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="ViewDashboard" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
-                            <TextBlock Text="Мои Книги" VerticalAlignment="Center" Margin="20 10"/>
+                            <TextBlock Text="Главная" FontSize="16" VerticalAlignment="Center" Margin="20 10"/>
                         </StackPanel>
                     </ListViewItem>
                     <ListViewItem Height="60">
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Face" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
-                            <TextBlock Text="Друзья" VerticalAlignment="Center" Margin="20 10"/>
+                            <materialDesign:PackIcon Kind="Book" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
+                            <TextBlock Text="Мои Книги" FontSize="16" VerticalAlignment="Center" Margin="20 10"/>
                         </StackPanel>
                     </ListViewItem>
                     <ListViewItem Height="60">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Magnify" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
-                            <TextBlock Text="Поиск" VerticalAlignment="Center" Margin="20 10"/>
+                            <TextBlock Text="Поиск" FontSize="16" VerticalAlignment="Center" Margin="20 10"/>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem Height="60">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Message" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
-                            <TextBlock Text="messages" VerticalAlignment="Center" Margin="20 10"/>
-                        </StackPanel>
-                    </ListViewItem>
-                    <ListViewItem Height="60">
+                    <ListViewItem Height="60" PreviewMouseLeftButtonDown="Author_Selected">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Pencil" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
-                            <TextBlock Text="Авторы" VerticalAlignment="Center" Margin="20 10"/>
+                            <TextBlock Text="Авторы" FontSize="16" VerticalAlignment="Center" Margin="20 10"/>
                         </StackPanel>
                     </ListViewItem>
                 </ListView>
             </StackPanel>
         </Grid>
-        <Frame x:Name="FrameForPages"/>
+        <Frame x:Name="FrameForPages" Margin="200,70,0,10" Width="880" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

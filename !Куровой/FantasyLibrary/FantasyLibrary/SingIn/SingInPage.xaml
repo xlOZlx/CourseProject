@@ -13,11 +13,11 @@
         <TextBlock Text="Вход" FontSize="52" FontFamily="Rockwell Extra Bold" HorizontalAlignment="Center" Margin="0,15,0,0" Height="55" VerticalAlignment="Top"/>
         <Grid Margin="0,70,0,0">
             <StackPanel Height="250" VerticalAlignment="Top">
-                <TextBox Height="45" Margin="50,100,50,0" materialDesign:HintAssist.Hint="ЛОГИН" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="16"/>
-                <PasswordBox Height="45" Margin="50,25,50,0" materialDesign:HintAssist.Hint="ПАРОЛЬ" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" FontSize="16"/>
+                <TextBox x:Name="UserLogin_TB" Height="45" Margin="50,100,50,0" materialDesign:HintAssist.Hint="ЛОГИН" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="16"/>
+                <PasswordBox x:Name="UserPasswor_TB" Height="45" Margin="50,25,50,0" materialDesign:HintAssist.Hint="ПАРОЛЬ" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" FontSize="16"/>
             </StackPanel>
             <Button x:Name="ButtonSingIn" VerticalAlignment="Bottom" Margin="100 104" Height="40" Content="ВОЙТИ" FontSize="18" Click="ButtonSingIn_Click"/>
-            <Button x:Name="ButtonRegister" VerticalAlignment="Bottom" Margin="0,20,0,20" Width="150" Content="Зарегистрироваться" Foreground="Gray" FontSize="12" Background="{x:Null}" BorderThickness="0" BorderBrush="{x:Null}" Click="ButtonRegister_Click"/>
+            <Button x:Name="ButtonRegister" VerticalAlignment="Bottom" Margin="0,20,0,20" Padding="0" Width="150" Content="Зарегистрироваться" Foreground="Gray" FontSize="14" Background="{x:Null}" BorderThickness="0" BorderBrush="{x:Null}" Click="ButtonRegister_Click"/>
         </Grid>
     </Grid>
 </Page>

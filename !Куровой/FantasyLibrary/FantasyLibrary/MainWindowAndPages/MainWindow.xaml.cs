@@ -20,9 +20,19 @@ namespace FantasyLibrary
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        Catalog CATALOG;
+        AuthorPage AUTHOR_PAGE;
+        public MainWindow(string userLogin)
         {
             InitializeComponent();
+            UserName.Text = userLogin;
+
+            MainWindow parentWindow = Window.GetWindow(this) as MainWindow;
+            Catalog catalog = new Catalog(parentWindow);
+            AuthorPage author_Page = new AuthorPage(parentWindow);
+            CATALOG = catalog;
+            AUTHOR_PAGE = author_Page;
+            FrameForPages.Content = CATALOG;
         }
 
         private void ButtonPopUpLogout_Click(object sender, RoutedEventArgs e)
@@ -50,6 +60,14 @@ namespace FantasyLibrary
             ButtonCloseMenu.Visibility = Visibility.Collapsed;
         }
 
-        
+        private void Catalog_Selected(object sender, RoutedEventArgs e)
+        {
+            FrameForPages.Content = CATALOG;
+        }
+
+        private void Author_Selected(object sender, MouseButtonEventArgs e)
+        {
+            FrameForPages.Content = AUTHOR_PAGE;
+        }
     }
 }

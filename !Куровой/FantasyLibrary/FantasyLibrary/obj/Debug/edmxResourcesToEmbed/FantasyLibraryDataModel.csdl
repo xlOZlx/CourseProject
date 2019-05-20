@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FLDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Author">
+    <Key>
+      <PropertyRef Name="AuthorName" />
+    </Key>
+    <Property Name="AuthorName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Books" Relationship="Self.FK_AuthorName_Author" FromRole="Author" ToRole="Books" />
+  </EntityType>
+  <EntityType Name="BookReview">
+    <Key>
+      <PropertyRef Name="BookName" />
+    </Key>
+    <Property Name="BookName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserLogin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ReviewText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Book" Relationship="Self.FK_BookReviews_Books" FromRole="BookReviews" ToRole="Books" />
+    <NavigationProperty Name="UserAccount" Relationship="Self.FK_BookReviews_Users" FromRole="BookReviews" ToRole="UserAccounts" />
+  </EntityType>
+  <EntityType Name="Book">
+    <Key>
+      <PropertyRef Name="BookName" />
+    </Key>
+    <Property Name="BookName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AuthorName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="CoverBook" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="SeriesName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="NumberInSeries" Type="Int32" />
+    <Property Name="LinkToBook" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Author" Relationship="Self.FK_AuthorName_Author" FromRole="Books" ToRole="Author" />
+    <NavigationProperty Name="BookReview" Relationship="Self.FK_BookReviews_Books" FromRole="Books" ToRole="BookReviews" />
+    <NavigationProperty Name="ReadBooks" Relationship="Self.FK_ReadBooks_Books" FromRole="Books" ToRole="ReadBooks" />
+    <NavigationProperty Name="ReadingBooks" Relationship="Self.FK_ReadingBooks_Books" FromRole="Books" ToRole="ReadingBooks" />
+  </EntityType>
+  <EntityType Name="ReadBook">
+    <Key>
+      <PropertyRef Name="UserLogin" />
+    </Key>
+    <Property Name="UserLogin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BookName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Book" Relationship="Self.FK_ReadBooks_Books" FromRole="ReadBooks" ToRole="Books" />
+    <NavigationProperty Name="UserAccount" Relationship="Self.FK_ReadBooks_Users" FromRole="ReadBooks" ToRole="UserAccounts" />
+  </EntityType>
+  <EntityType Name="ReadingBook">
+    <Key>
+      <PropertyRef Name="UserLogin" />
+    </Key>
+    <Property Name="UserLogin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BookName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Book" Relationship="Self.FK_ReadingBooks_Books" FromRole="ReadingBooks" ToRole="Books" />
+    <NavigationProperty Name="UserAccount" Relationship="Self.FK_ReadingBooks_Users" FromRole="ReadingBooks" ToRole="UserAccounts" />
+  </EntityType>
+  <EntityType Name="UserAccount">
+    <Key>
+      <PropertyRef Name="UserLogin" />
+    </Key>
+    <Property Name="UserLogin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="BookReviews" Relationship="Self.FK_BookReviews_Users" FromRole="UserAccounts" ToRole="BookReviews" />
+    <NavigationProperty Name="ReadBook" Relationship="Self.FK_ReadBooks_Users" FromRole="UserAccounts" ToRole="ReadBooks" />
+    <NavigationProperty Name="ReadingBook" Relationship="Self.FK_ReadingBooks_Users" FromRole="UserAccounts" ToRole="ReadingBooks" />
+  </EntityType>
+  <Association Name="FK_AuthorName_Author">
+    <End Role="Author" Type="Self.Author" Multiplicity="0..1" />
+    <End Role="Books" Type="Self.Book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Author">
+        <PropertyRef Name="AuthorName" />
+      </Principal>
+      <Dependent Role="Books">
+        <PropertyRef Name="AuthorName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BookReviews_Books">
+    <End Role="Books" Type="Self.Book" Multiplicity="1" />
+    <End Role="BookReviews" Type="Self.BookReview" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Books">
+        <PropertyRef Name="BookName" />
+      </Principal>
+      <Dependent Role="BookReviews">
+        <PropertyRef Name="BookName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BookReviews_Users">
+    <End Role="UserAccounts" Type="Self.UserAccount" Multiplicity="0..1" />
+    <End Role="BookReviews" Type="Self.BookReview" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserAccounts">
+        <PropertyRef Name="UserLogin" />
+      </Principal>
+      <Dependent Role="BookReviews">
+        <PropertyRef Name="UserLogin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReadBooks_Books">
+    <End Role="Books" Type="Self.Book" Multiplicity="0..1" />
+    <End Role="ReadBooks" Type="Self.ReadBook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Books">
+        <PropertyRef Name="BookName" />
+      </Principal>
+      <Dependent Role="ReadBooks">
+        <PropertyRef Name="BookName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReadingBooks_Books">
+    <End Role="Books" Type="Self.Book" Multiplicity="0..1" />
+    <End Role="ReadingBooks" Type="Self.ReadingBook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Books">
+        <PropertyRef Name="BookName" />
+      </Principal>
+      <Dependent Role="ReadingBooks">
+        <PropertyRef Name="BookName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReadBooks_Users">
+    <End Role="UserAccounts" Type="Self.UserAccount" Multiplicity="1" />
+    <End Role="ReadBooks" Type="Self.ReadBook" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="UserAccounts">
+        <PropertyRef Name="UserLogin" />
+      </Principal>
+      <Dependent Role="ReadBooks">
+        <PropertyRef Name="UserLogin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReadingBooks_Users">
+    <End Role="UserAccounts" Type="Self.UserAccount" Multiplicity="1" />
+    <End Role="ReadingBooks" Type="Self.ReadingBook" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="UserAccounts">
+        <PropertyRef Name="UserLogin" />
+      </Principal>
+      <Dependent Role="ReadingBooks">
+        <PropertyRef Name="UserLogin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FantasyLibraryDataEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Authors" EntityType="Self.Author" />
+    <EntitySet Name="BookReviews" EntityType="Self.BookReview" />
+    <EntitySet Name="Books" EntityType="Self.Book" />
+    <EntitySet Name="ReadBooks" EntityType="Self.ReadBook" />
+    <EntitySet Name="ReadingBooks" EntityType="Self.ReadingBook" />
+    <EntitySet Name="UserAccounts" EntityType="Self.UserAccount" />
+    <AssociationSet Name="FK_AuthorName_Author" Association="Self.FK_AuthorName_Author">
+      <End Role="Author" EntitySet="Authors" />
+      <End Role="Books" EntitySet="Books" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BookReviews_Books" Association="Self.FK_BookReviews_Books">
+      <End Role="Books" EntitySet="Books" />
+      <End Role="BookReviews" EntitySet="BookReviews" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BookReviews_Users" Association="Self.FK_BookReviews_Users">
+      <End Role="UserAccounts" EntitySet="UserAccounts" />
+      <End Role="BookReviews" EntitySet="BookReviews" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReadBooks_Books" Association="Self.FK_ReadBooks_Books">
+      <End Role="Books" EntitySet="Books" />
+      <End Role="ReadBooks" EntitySet="ReadBooks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReadingBooks_Books" Association="Self.FK_ReadingBooks_Books">
+      <End Role="Books" EntitySet="Books" />
+      <End Role="ReadingBooks" EntitySet="ReadingBooks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReadBooks_Users" Association="Self.FK_ReadBooks_Users">
+      <End Role="UserAccounts" EntitySet="UserAccounts" />
+      <End Role="ReadBooks" EntitySet="ReadBooks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReadingBooks_Users" Association="Self.FK_ReadingBooks_Users">
+      <End Role="UserAccounts" EntitySet="UserAccounts" />
+      <End Role="ReadingBooks" EntitySet="ReadingBooks" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

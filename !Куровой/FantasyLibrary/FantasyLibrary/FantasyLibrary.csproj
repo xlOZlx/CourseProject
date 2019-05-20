@@ -35,6 +35,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="FB2Library, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FB2Library.1.3.0\lib\netstandard1.0\FB2Library.dll</HintPath>
     </Reference>
@@ -52,6 +58,7 @@
       <HintPath>..\packages\System.AppContext.4.3.0\lib\net46\System.AppContext.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Console, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Console.4.3.0\lib\net46\System.Console.dll</HintPath>
     </Reference>
@@ -85,6 +92,8 @@
     <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Security.Cryptography.Algorithms, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net461\System.Security.Cryptography.Algorithms.dll</HintPath>
     </Reference>
@@ -117,6 +126,51 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Author.cs">
+      <DependentUpon>FantasyLibraryDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Book.cs">
+      <DependentUpon>FantasyLibraryDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BookReader.xaml.cs">
+      <DependentUpon>BookReader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BookReview.cs">
+      <DependentUpon>FantasyLibraryDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FantasyLibraryDataModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FantasyLibraryDataModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FantasyLibraryDataModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FantasyLibraryDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FantasyLibraryDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FantasyLibraryDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindowAndPages\AuthorInfoPage.xaml.cs">
+      <DependentUpon>AuthorInfoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindowAndPages\AuthorPage.xaml.cs">
+      <DependentUpon>AuthorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindowAndPages\BookinfoPage.xaml.cs">
+      <DependentUpon>BookinfoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindowAndPages\Catalog.xaml.cs">
+      <DependentUpon>Catalog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReadBook.cs">
+      <DependentUpon>FantasyLibraryDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReadingBook.cs">
+      <DependentUpon>FantasyLibraryDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="SingIn\SingInRegister.xaml.cs">
       <DependentUpon>SingInRegister.xaml</DependentUpon>
     </Compile>
@@ -126,6 +180,29 @@
     <Compile Include="SingIn\SingIn.xaml.cs">
       <DependentUpon>SingIn.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserAccount.cs">
+      <DependentUpon>FantasyLibraryDataModel.tt</DependentUpon>
+    </Compile>
+    <Page Include="BookReader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindowAndPages\AuthorInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindowAndPages\AuthorPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindowAndPages\BookinfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindowAndPages\Catalog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindowAndPages\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -169,6 +246,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="FantasyLibraryDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FantasyLibraryDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="FantasyLibraryDataModel.edmx.diagram">
+      <DependentUpon>FantasyLibraryDataModel.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -178,6 +262,20 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FantasyLibraryDataModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FantasyLibraryDataModel.edmx</DependentUpon>
+      <LastGenOutput>FantasyLibraryDataModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="FantasyLibraryDataModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FantasyLibraryDataModel.edmx</DependentUpon>
+      <LastGenOutput>FantasyLibraryDataModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

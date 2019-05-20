@@ -1,0 +1,79 @@
+﻿<Window x:Class="FantasyLibrary.BookReader"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FantasyLibrary"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="BookReader" Height="600" Width="800" WindowStartupLocation="CenterScreen"
+        WindowStyle="None" MinHeight="600" MinWidth="800" ResizeMode="NoResize">
+    <Window.Resources>
+        <Storyboard x:Key="MenuOpen">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridContentBook">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="200"/>
+            </DoubleAnimationUsingKeyFrames>
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" Storyboard.TargetName="GridBookText">
+                <SplineThicknessKeyFrame KeyTime="0" Value="0,35,0,0"/>
+                <SplineThicknessKeyFrame KeyTime="0:0:0.3" Value="200,35,0,0"/>
+            </ThicknessAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="MenuClose">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridContentBook">
+                <EasingDoubleKeyFrame KeyTime="0" Value="200"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" Storyboard.TargetName="GridBookText">
+                <SplineThicknessKeyFrame KeyTime="0" Value="200,35,0,0"/>
+                <SplineThicknessKeyFrame KeyTime="0:0:0.3" Value="0,35,0,0"/>
+            </ThicknessAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonOpenMenu">
+            <BeginStoryboard Storyboard="{StaticResource MenuOpen}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonCloseMenu">
+            <BeginStoryboard Storyboard="{StaticResource MenuClose}"/>
+        </EventTrigger>
+    </Window.Triggers>
+    <Grid>
+        <Grid VerticalAlignment="Top" Background="#FFBD00BD" Height="35">
+            <Button x:Name="ButtonCloseMenu" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Left" Click="ButtonCloseMenu_Click">
+                <materialDesign:PackIcon Foreground="White" Kind="ArrowLeft" Padding="0" Width="25" Height="25"/>
+            </Button>
+            <Button x:Name="ButtonOpenMenu" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="Collapsed" Click="ButtonOpenMenu_Click">
+                <materialDesign:PackIcon Foreground="White" Kind="Menu" Padding="0" Width="25" Height="25"/>
+            </Button>
+            <TextBlock HorizontalAlignment="Left" Text="FLReader" Foreground="White" VerticalAlignment="Center" FontSize="16" Margin="70,0,0,0"/>
+            <TextBlock x:Name="NameBookInReader" Text="Name" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="18"/>
+            <Button x:Name="FullScreenOpenButton" Margin="0,0,35,0" Width="35" Height="35" VerticalAlignment="Center"
+                    HorizontalAlignment="Right" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" Click="FullScreenOpenButton_Click">
+                <materialDesign:PackIcon Kind="Fullscreen" Height="35" Width="35" 
+                                         VerticalAlignment="Center" HorizontalAlignment="Center" />
+            </Button>
+            <Button x:Name="FullScreenCloseButton" Margin="0,0,35,0" Width="35" Height="35" VerticalAlignment="Center"
+                    HorizontalAlignment="Right" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" Visibility="Collapsed" Click="FullScreenCloseButton_Click">
+                <materialDesign:PackIcon Kind="FullscreenExit" Height="35" Width="35" 
+                                         VerticalAlignment="Center" HorizontalAlignment="Center" />
+            </Button>
+            <Button x:Name="CloseWindowButton" Width="35" Height="35" HorizontalAlignment="Right" Padding="0" VerticalAlignment="Center"
+                    Background="{x:Null}" BorderBrush="{x:Null}" Click="CloseWindowButton_Click">
+                <materialDesign:PackIcon Kind="Close" Height="35" Width="35" 
+                                         VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Button>
+        </Grid>
+        <Grid x:Name="GridContentBook" Width="200"  Margin="0,35,0,0" HorizontalAlignment="Left">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                <TreeView x:Name="TV_ContentBook" Background="#FF2E002E" Foreground="#FFBD00BD"/>
+            </ScrollViewer>
+        </Grid>
+        <Grid x:Name="GridBookText" Margin="200,35,0,0">
+            <ScrollViewer x:Name="SVForBook" VerticalScrollBarVisibility="Auto">
+                <StackPanel x:Name="FormForBook" Background="#fefcaf"/>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Window>

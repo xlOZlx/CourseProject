@@ -13,11 +13,12 @@
         <TextBlock Text="Регистрация" FontSize="52" FontFamily="Rockwell Extra Bold" HorizontalAlignment="Center" Margin="0,15,0,0" Height="55" VerticalAlignment="Top"/>
         <Grid Margin="0,70,0,0">
             <StackPanel Height="250" VerticalAlignment="Top">
-                <TextBox Height="45" Margin="50,50,50,0" materialDesign:HintAssist.Hint="ЛОГИН" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="16"/>
-                <PasswordBox Height="45" Margin="50,15,50,0" materialDesign:HintAssist.Hint="ПАРОЛЬ" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" FontSize="16"/>
-                <PasswordBox Height="45" Margin="50,15,50,0" materialDesign:HintAssist.Hint="ПОВТОРИТЕ ПАРОЛЬ" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" FontSize="16" VirtualizingPanel.VirtualizationMode="Recycling"/>
+                <TextBox x:Name="UserLogin_TB" Height="45" Margin="50,50,50,0" materialDesign:HintAssist.Hint="ЛОГИН" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="16"/>
+                <PasswordBox x:Name="UserPassword_PB" Height="45" Margin="50,15,50,0" materialDesign:HintAssist.Hint="ПАРОЛЬ" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" FontSize="16"/>
+                <PasswordBox x:Name="RepeatUserPassword_PB" Height="45" Margin="50,15,50,0" materialDesign:HintAssist.Hint="ПОВТОРИТЕ ПАРОЛЬ" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" FontSize="16" VirtualizingPanel.VirtualizationMode="Recycling"/>
             </StackPanel>
             <Button x:Name="ButtonRegister" VerticalAlignment="Bottom" Margin="100 104" Height="40" Content="ЗАРЕГЕСТРИРОВАТЬСЯ" FontSize="15" Click="ButtonRegister_Click"/>
+            <Button x:Name="ButtonCancellation" VerticalAlignment="Bottom" Margin="0,20,0,20" Width="150" Content="Отмена" Foreground="Gray" FontSize="14" Background="{x:Null}" BorderThickness="0" BorderBrush="{x:Null}" Click="ButtonCancellation_Click"/>
         </Grid>
     </Grid>
 </Page>
